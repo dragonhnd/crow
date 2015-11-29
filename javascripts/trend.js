@@ -188,7 +188,7 @@ d3.json('data/data.json', function(error, rawData) {
         })
         .append("title")
         .text(function(d) {
-            return "keyword: " + d.keyword;
+            return d.keyword + " : "+ d.count;
         });
 
 
