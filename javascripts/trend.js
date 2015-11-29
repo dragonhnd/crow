@@ -251,6 +251,34 @@ d3.json("data/week_data.json", function(error, root) {
         .text(function(d) {
             return d.keyword;
         });
+        
+    var bar_chart = d3.select("div.bar")
+        .append("svg")
+        .attr("width", diameter)
+        .attr("height", keywords.length * 26 + 30);
+
+    var barScale = d3.scale.linear()
+        .domain([0, d3.max(root, function(d) {
+            return d.count;
+        })])
+        .range([0, 400]);
+        
+    for (var i = 0; i < keywords.length; i++) {
+        bar_chart.append("rect")
+            .attr("x", 120)
+            .attr("y", 20+i * 26)
+            .attr("width", barScale(keywords_counts[keywords[i]]))
+            .attr("height", 10)
+            .attr("fill", colors[keywords[i]]);
+        bar_chart.append("text")
+            .text(keywords_counts[keywords[i]])
+            .attr("x", 124 + barScale(keywords_counts[keywords[i]]))
+            .attr("y", 20+i * 26 + 10);
+        bar_chart.append("text")
+            .text(keywords[i])
+            .attr("x", 10)
+            .attr("y", 20+i * 26 + 10);
+    }
 });
 
 d3.json("data/users.json", function(error, rawData) {
