@@ -287,3 +287,7 @@ path.line {
 .node :hover {
     fill:orange;
 }
+
+#lineBtn {
+    margin:0 0 0 0px;
+}
