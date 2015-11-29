@@ -19,7 +19,6 @@ function getDiffDays(data) {
     firstDate = new Date(flatData[0].date);
     secondDate = new Date(flatData[flatData.length - 1].date);
     diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-    console.log(diffDays);
     return diffDays;
 }
 
@@ -52,7 +51,6 @@ d3.json('data/data.json', function(error, rawData) {
                 count: d.count
             };
         });
-//        console.log(item);
         item.sort(function(a, b) {
             return new Date(a.date) - new Date(b.date);
         });
@@ -60,15 +58,11 @@ d3.json('data/data.json', function(error, rawData) {
         data.push(item);
     }
 
-    console.log("generating flatData")
-
     for (var i = 0; i < data.length; i++) {
         for (var j = 0; j < data[i].length; j++) {
             flatData.push(data[i][j]);
         }
     }
-
-    console.log(flatData)
 
     var keywords = [];
 
@@ -134,7 +128,7 @@ d3.json('data/data.json', function(error, rawData) {
     for (var i = 0; i < keywords.length; i++) {
         topic_list.append("rect")
             .attr("x", (i % 3) * 230)
-            .attr("y", Math.floor(i / 3)*26)
+            .attr("y", Math.floor(i / 3) * 26)
             .attr("width", 20)
             .attr("height", 10)
             .attr("fill", colors[keywords[i]]);
@@ -143,7 +137,7 @@ d3.json('data/data.json', function(error, rawData) {
         topic_list.append("text")
             .text(keywords[i])
             .attr("x", (i % 3) * 230 + 30)
-            .attr("y", Math.floor(i / 3)*26 + 10);
+            .attr("y", Math.floor(i / 3) * 26 + 10);
     }
 
     var svg = d3.select("div.main")
@@ -266,18 +260,17 @@ d3.json("data/users.json", function(error, rawData) {
     var field = rawData["field"];
     var count = rawData["count"];
 
-        data = rawData["users"].map(function(d) {
-            return {
-                name: d.name,
-                username: d.username,
-                id: d.id
-            };
-        });
-    console.log(data);
+    data = rawData["users"].map(function(d) {
+        return {
+            name: d.name,
+            username: d.username,
+            id: d.id
+        };
+    });
 
     var targetP = document.getElementById("user");
 
-    for(var i =0;i<data.length;i++){
+    for (var i = 0; i < data.length; i++) {
         var br = document.createElement('br');
         var a = document.createElement('a');
         a.setAttribute('href', "https://twitter.com/" + data[i].username);
