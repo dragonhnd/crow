@@ -197,10 +197,20 @@ d3.json('data/data.json', function(error, rawData) {
 d3.json("data/week_data.json", function(error, root) {
     if (error) throw error;
 
+    root.sort(function(a, b) {
+        return b.count - a.count;
+    });
+
     var keywords = [];
 
     for (var i = 0; i < root.length; i++) {
         keywords.push(root[i].keyword);
+    }
+
+    var keywords_counts = {};
+
+    for (var i = 0; i < root.length; i++) {
+        keywords_counts[root[i].keyword] = root[i].count;
     }
 
     var colors = generateColors(keywords);
