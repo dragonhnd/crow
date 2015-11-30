@@ -32,3 +32,25 @@ function toggleLine() {
 }
 
 document.getElementById("lineBtn").addEventListener("click", toggleLine);
+
+var keywords = ["Scientist", "DataScience", "business", "New", "hings", "DevOps", "Machine Learning", "IBM", "ht", "DEAL", "KDN", "Cloud", "analytics", "Opines", "MachineLearning", "abdsc", "Internet", "Hadoop", "Business", "Io", "EMC", "Ways", "Analytics", "Learn", "Learning", "Spark", "H", "Apache", "Python"];
+
+function toggleSingleLine(keyword) {
+    line = document.getElementById("line_" + keyword);
+    console.log(line);
+    if (line.style.display == "none") {
+        line.style.display = "block";
+    } else {
+        line.style.display = "none";
+    }
+}
+
+for (var i = 0; i < keywords.length; i++) {
+
+}
+
+keywords.forEach(function( v,i ) {
+      document.getElementById(v).addEventListener("click", function(){
+        toggleSingleLine(v);
+    });
+});
