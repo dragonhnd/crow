@@ -136,6 +136,7 @@ d3.json('data/data.json', function(error, rawData) {
 
         topic_list.append("text")
             .text(keywords[i])
+            .attr("id", keywords[i])
             .attr("x", (i % 3) * 230 + 30)
             .attr("y", Math.floor(i / 3) * 26 + 10);
     }
@@ -165,6 +166,7 @@ d3.json('data/data.json', function(error, rawData) {
 
     for (var i = 0; i < data.length; i++) {
         svg.append("path")
+            .attr("id", "line_" + data[i][0].keyword)
             .attr("class", "line")
             .attr("clip-path", "url(#clip)")
             .attr("d", line(data[i]));
