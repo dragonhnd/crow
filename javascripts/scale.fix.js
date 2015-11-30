@@ -33,7 +33,36 @@ function toggleLine() {
 
 document.getElementById("lineBtn").addEventListener("click", toggleLine);
 
-var keywords = ["Scientist", "DataScience", "business", "New", "hings", "DevOps", "Machine Learning", "IBM", "ht", "DEAL", "KDN", "Cloud", "analytics", "Opines", "MachineLearning", "abdsc", "Internet", "Hadoop", "Business", "Io", "EMC", "Ways", "Analytics", "Learn", "Learning", "Spark", "H", "Apache", "Python"];
+var keywords = ["Scientist", "Cloud", "business", "New", "hings", "DevOps", "Machine Learning", "IBM", "ht", "DEAL", "KDN", "DataScience", "analytics", "Opines", "MachineLearning", "abdsc", "Internet", "Hadoop", "Business", "Io", "EMC", "Ways", "Analytics", "Learn", "Learning", "Spark", "H", "Apache", "Python"];
+
+d3.json('static/data.json', function(error, rawData) {
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    for (var i = 0; i < rawData.length; i++) {
+        var item = rawData[i].map(function(d) {
+            return {
+                date: parseDate(d.date),
+                keyword: d.keyword,
+                count: d.count
+            };
+        });
+        //        console.log(item);
+        item.sort(function(a, b) {
+            return new Date(a.date) - new Date(b.date);
+        });
+
+        data.push(item);
+    }
+
+
+    for (var i = 0; i < data.length; i++) {
+        keywords.push(data[i][0].keyword);
+    }
+
+    console.log(keywords);
 
 function toggleSingleLine(keyword) {
     line = document.getElementById("line_" + keyword);
@@ -45,12 +74,12 @@ function toggleSingleLine(keyword) {
     }
 }
 
-for (var i = 0; i < keywords.length; i++) {
-
-}
 
 keywords.forEach(function( v,i ) {
       document.getElementById(v).addEventListener("click", function(){
         toggleSingleLine(v);
     });
+});
+
+
 });
