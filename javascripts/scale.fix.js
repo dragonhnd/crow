@@ -35,7 +35,7 @@ document.getElementById("lineBtn").addEventListener("click", toggleLine);
 
 var keywords = ["Scientist", "Cloud", "business", "New", "hings", "DevOps", "Machine Learning", "IBM", "ht", "DEAL", "KDN", "DataScience", "analytics", "Opines", "MachineLearning", "abdsc", "Internet", "Hadoop", "Business", "Io", "EMC", "Ways", "Analytics", "Learn", "Learning", "Spark", "H", "Apache", "Python"];
 
-d3.json('static/data.json', function(error, rawData) {
+d3.json('data/data.json', function(error, rawData) {
     if (error) {
         console.error(error);
         return;
